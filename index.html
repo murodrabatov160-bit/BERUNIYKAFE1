@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beruniy Kafe - Royal Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #0c100e;
+            color: #e4ece7;
+            min-height: 100vh;
+            padding: 40px 15px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(30, 70, 50, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa771c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .brand-subtitle {
+            color: #8da195;
+            font-size: 0.95rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        /* BANQUET & WEDDING BANNER (SPECIAL SECTION) */
+        .banquet-banner {
+            background: linear-gradient(135deg, rgba(20, 40, 30, 0.9), rgba(12, 20, 15, 0.95));
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 60px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banquet-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .banquet-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #f5d77f;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .banquet-desc {
+            color: #b0c4b8;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin: 50px 0 25px 0;
+            text-align: left;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-left: 4px solid #d4af37;
+            padding-left: 15px;
+            text-transform: uppercase;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        /* CARD */
+        .card {
+            background: rgba(18, 28, 22, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+            background: rgba(24, 38, 30, 0.85);
+        }
+
+        /* IMAGE WRAPPER */
+        .image-wrapper {
+            width: 100%;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #050806;
+            margin-bottom: 15px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .item-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .item-img {
+            transform: scale(1.1);
+        }
+
+        .item-name {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #f2f7f4;
+            margin-bottom: 15px;
+            letter-spacing: 0.3px;
+        }
+
+        /* PRICE BUTTON */
+        .price-box {
+            width: 100%;
+            height: 44px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .btn-show {
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 175, 55, 0.05);
+            color: #d4af37;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .card:hover .btn-show {
+            background: linear-gradient(135deg, #d4af37 0%, #aa771c 100%);
+            color: #0c100e;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .price-value {
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 175, 55, 0.12);
+            color: #f5d77f;
+            border: 1.5px solid #d4af37;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: popIn 0.3s ease-out;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 80px;
+            padding: 40px 20px;
+            background: rgba(18, 28, 22, 0.5);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+            border-radius: 16px;
+        }
+
+        .footer-note {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 8px;
+        }
+
+        .footer-subnote {
+            font-size: 0.9rem;
+            color: #8da195;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .brand-title { font-size: 2.3rem; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .card { padding: 12px; }
+            .image-wrapper { height: 110px; }
+            .item-name { font-size: 0.88rem; }
+            .banquet-title { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1 class="brand-title">BERUNIY KAFE</h1>
+            <p class="brand-subtitle">BERUNIY KAFE HAR DOIM XIZMATDA</p>
+        </header>
+
+        <!-- TO'Y VA BANKET BO'LIMI -->
+        <div class="banquet-banner">
+            <h2 class="banquet-title">To'ylar va Maxsus Tantanalar</h2>
+            <p class="banquet-desc">
+                Beruniy kafesida 350 kishigacha bo'lgan muhtasham to'ylar, kelin-yoshlar bazmlari va banketlar uchun maxsus zamonaviy xonalarimiz xizmatingizda. Unutilmas onlar va olijanob xizmat ko'rsatish sharoitidan bahramand bo'ling! ✨
+            </p>
+        </div>
+
+        <!-- TO'YLAR UCHUN MAXSUS OPTIM -->
+        <div class="section-title">To'ylar va Banketlar uchun Maxsus</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="JVEST.JPG" class="item-img" alt="Baliq Jvoyvest"></div>
+                <div class="item-name">Baliq Jvoyvest (optim)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">80,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="KFS1.JPG" class="item-img" alt="KFS To'yga"></div>
+                <div class="item-name">KFS To'yga</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">60,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="KRELISHKI.JPG" class="item-img" alt="Krilishki"></div>
+                <div class="item-name">Krilishki</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">100,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BORAKLAR VA ASARTILAR -->
+        <div class="section-title">Boraklar va Asartilar</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="GOSHT.JPG" class="item-img" alt="Go'sht Borak"></div>
+                <div class="item-name">Go'sht Borak</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">50,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="MAYAK.JPG" class="item-img" alt="Tuxum Borak"></div>
+                <div class="item-name">Tuxum Borak</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="QOTIR.JPG" class="item-img" alt="Qotir Borak"></div>
+                <div class="item-name">Qotir Borak</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="KORTOSHKA.JPG" class="item-img" alt="Kartoshka Borak"></div>
+                <div class="item-name">Kartoshka Borak</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">35,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="ASARTI.JPG" class="item-img" alt="Borak Asarti"></div>
+                <div class="item-name">Borak Asarti</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">150,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="LELNI.JPG" class="item-img" alt="Go'sht Asarti"></div>
+                <div class="item-name">Go'sht Asarti</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">500,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BALIQ VA KOTLETLAR -->
+        <div class="section-title">Baliq va Taomlar</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="MINTAY.JPG" class="item-img" alt="Mintay Baliq"></div>
+                <div class="item-name">MAYBACH Baliq</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">60,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="katlet.jpg" class="item-img" alt="Katlet"></div>
+                <div class="item-name">Katlet</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="GOSJYY.JPG" class="item-img" alt="Go'sht Say Baliq"></div>
+                <div class="item-name">Go'sht Say </div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">270,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="sazan.jpg" class="item-img" alt="Sazan"></div>
+                <div class="item-name">Sazan</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">120,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="belamur.jpg" class="item-img" alt="Belamur"></div>
+                <div class="item-name">Belamur</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">120,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="MINTAY.JPG" class="item-img" alt="Maybach Mintay"></div>
+                <div class="item-name">Mintay</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">60,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KABOB VA SHORVALAR -->
+        <div class="section-title">Kabob va Shorvalar</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="SARYOG.JPG" class="item-img" alt="Saryog' Juja"></div>
+                <div class="item-name">Saryog' Juja</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">85,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="JIGAR.JPG" class="item-img" alt="Tovuq Go'sht Kabob"></div>
+                <div class="item-name">JIGAR</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">190,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="MOL.JPG" class="item-img" alt="Mol Tili"></div>
+                <div class="item-name">Mol Tili</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">190,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="OSMA.JPG" class="item-img" alt="Osma Shorva"></div>
+                <div class="item-name">Osma Shorva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">40,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="QORIN.JPG" class="item-img" alt="Qorin Tuyoq Shurva"></div>
+                <div class="item-name">Qorin Tuyoq Shurva</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">80,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="PELMEN.JPG" class="item-img" alt="Pelmen"></div>
+                <div class="item-name">Pelmen</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">45,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="KFS1.JPG" class="item-img" alt="KFS Tovuq"></div>
+                <div class="item-name">KFS </div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">85,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="IJON.JPG" class="item-img" alt="Ijan Shashlik"></div>
+                <div class="item-name">Ijan Shashlik</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">15,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="SHASHLIK.JPG" class="item-img" alt="Tovuq Shashlik"></div>
+                <div class="item-name">Tovuq Shashlik</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">20,000 so'm</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="JIZ.JPG" class="item-img" alt="Jiz"></div>
+                <div class="item-name">Jiz</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">250,000 so'm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKOZNOY TAOMLAR (5 TA) -->
+        <div class="section-title">Maxsus Zakoznoy Taomlar</div>
+        <div class="grid">
+            <div class="card">
+                <div class="image-wrapper"><img src="KOBOB.JPG" class="item-img" alt="Go'sht Kabob (Zakoznoy)"></div>
+                <div class="item-name">Go'sht Kabob (Zakoznoy)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">Buyurtma asosida</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="KURTIK.JPG" class="item-img" alt="Kurtuk (Zakoznoy)"></div>
+                <div class="item-name">Kurtuk (Zakoznoy)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">Buyurtma asosida</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="OSH.JPG" class="item-img" alt="Kurtik Osh (Zakoznoy)"></div>
+                <div class="item-name">OSH(Zakoznoy)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">Buyurtma asosida</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="MANPAR.JPG" class="item-img" alt="Manpar (Zakoznoy)"></div>
+                <div class="item-name">Manpar (Zakoznoy)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">Buyurtma asosida</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-wrapper"><img src="QURDAQ.JPG" class="item-img" alt="Qora Kurtoq (Zakoznoy)"></div>
+                <div class="item-name">QOZON KOBOB (Zakoznoy)</div>
+                <div class="price-box" onclick="togglePrice(this)">
+                    <div class="btn-show">Narxni ko'rish</div>
+                    <div class="price-value">Buyurtma asosida</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-note">Beruniy Kafe</div>
+            <div class="footer-subnote">Sizning eng shinam va xushmuomala maskaningiz ✨</div>
+        </footer>
+    </div>
+
+    <script>
+        function togglePrice(element) {
+            const btn = element.querySelector('.btn-show');
+            const price = element.querySelector('.price-value');
+
+            if (price.style.display === 'flex') {
+                price.style.display = 'none';
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
+                price.style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>
